@@ -1,41 +1,55 @@
+﻿
 namespace ChallengeApp.Tests1
 {
     public class EmployeeTests
     {
+        [Test]
+        public void MinValueTest() 
+        {
+            var employee = new Employee("Ela", "Karolewska");
+            employee.AddGrade(5);
+            employee.AddGrade(6);
+            employee.AddGrade(4);
+
+            Statistics statistics = employee.GetStatistics();
+
+            Assert.AreEqual(4, statistics.Min);
+        
+        }
 
         [Test]
-        public void WhenScoreAreGranted_ShouldReturnSum()
+        public void MaxValueTest() 
         {
-            var empl1 = new Employee("Justyna", "Kowalska", 38);
+            var employee = new Employee("Ela", "Karolewska");
+            employee.AddGrade(5);
+            employee.AddGrade(6);
+            employee.AddGrade(4);
+
+            Statistics statistics = employee.GetStatistics();
             
-            empl1.AddScore(5);
-            empl1.AddScore(3);
-            empl1.AddScore(8);
-
-            var result1 = empl1.Result;
-
-            Assert.AreEqual(16, result1);
-
+            Assert.AreEqual(6, statistics.Max);
+        
         }
 
         [Test]
 
-        public void WhenScoreAreDeducted_ShouldReturnSum() 
+        public void AverageValueTest() 
         {
-            var empl2 = new Employee("Madalena", "Nowak", 42);
+            var employee = new Employee("Ela", "Karolewska");
+            employee.AddGrade(5);
+            employee.AddGrade(6);
+            employee.AddGrade(4);
 
-            empl2.AddScore(9);
-            empl2.AddScore(-5);
-            empl2.AddScore(2);
+            Statistics statistics = employee.GetStatistics();
 
-            var result2 = empl2.Result;
-
-            Assert.AreEqual(6, result2);
+            Assert.AreEqual(5, statistics.Average);
+        }
         
-        }    
          
-            
-      
+        private Employee GetEmployee(string name,string surname)
+         {
+            return new Employee (name, surname);
         
-    }
+         }
+     }
 }

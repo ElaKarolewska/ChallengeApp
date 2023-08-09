@@ -1,14 +1,14 @@
 ﻿using ChallengeApp;
 
-Console.WriteLine("Witamy w programie WYZ do oceny pracowników.");
+Console.WriteLine("Witamy w programie do oceny kierowników.");
 Console.WriteLine("============================================");
 Console.WriteLine();
 
-var employee = new Employee("Ela", "Karolewska");
+var supervisor = new Supervisor("Ela", "Karolewska");
 
 while (true) 
 {
-    Console.WriteLine("Podaj kolejną ocenę pracownika: ");
+    Console.WriteLine("Podaj kolejną ocenę kierownika: ");
     var input = Console.ReadLine();
 
     if (input == "q") 
@@ -17,7 +17,7 @@ while (true)
     }
     try
     {
-        employee.AddGrade(input);
+        supervisor.AddGrade(input);
     }
     catch (Exception e)
     {
@@ -26,7 +26,7 @@ while (true)
     
 }
 
-var statistics = employee.GetStatistics(); 
+var statistics = supervisor.GetStatistics(); 
 Console.WriteLine($"Average: {statistics.Average}");
 Console.WriteLine($"Min: {statistics.Min}");
 Console.WriteLine($"Max: {statistics.Max}");

@@ -1,14 +1,18 @@
 ﻿
+using System.Diagnostics;
+
 namespace ChallengeApp
 {
-    public class Employee : Person
+    public class Employee : IEmployee
     {
         private List<float> grades = new List<float>();
-        public Employee(string name, string surname, char sex, int age)
-               : base(name, surname, sex, age)
+        public Employee(string name, string surname)
         {
-            
+            this.Name = name;
+            this.Surname = surname;
         }
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -31,7 +35,16 @@ namespace ChallengeApp
                 throw new Exception("String is not float");
             }
         }
-       
+        public void AddGrade(double grade) 
+        {
+            float result = (float)grade;
+            this.AddGrade(grade);
+        }
+        public void AddGrade(int grade) 
+        {
+            float result = grade;
+            this.AddGrade(grade);
+        }
         public void AddGrade(char grade) 
         {
             switch(grade)
@@ -94,7 +107,8 @@ namespace ChallengeApp
                     statistics.AverageLetter = 'E';
                     break;
             }
-            return statistics;
+                 
+              return statistics;
         }
         
     }

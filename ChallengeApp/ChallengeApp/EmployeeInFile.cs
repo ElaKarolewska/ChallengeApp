@@ -2,6 +2,8 @@
 {
     public class EmployeeInFile : EmployeeBase
     {
+        public override event GradeAddedDelegate GradeAdded;
+        
         private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname)
             : base(name, surname)
@@ -14,6 +16,12 @@
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
+
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
+
                 }
             }
             else
@@ -36,35 +44,33 @@
 
         public override void AddGrade(char grade)
         {
-            using (var writer = File.AppendText(fileName))
+            switch (grade)
             {
-                switch (grade)
-                {
-                    case 'A':
-                    case 'a':
-                        writer.WriteLine(100);
-                        break;
-                    case 'B':
-                    case 'b':
-                        writer.WriteLine(80);
-                        break;
-                    case 'C':
-                    case 'c':
-                        writer.WriteLine(60);
-                        break;
-                    case 'D':
-                    case 'd':
-                        writer.WriteLine(40);
-                        break;
-                    case 'E':
-                    case 'e':
-                        writer.WriteLine(20);
-                        break;
-                    default:
-                        throw new Exception("Wrong letter");
+                case 'A':
+                case 'a':
+                   this.AddGrade(100);
+                    break;
+                case 'B':
+                case 'b':
+                    this.AddGrade(80);
+                    break;
+                case 'C':
+                case 'c':
+                    this.AddGrade(60);
+                    break;
+                case 'D':
+                case 'd':
+                    this.AddGrade(40);
+                    break;
+                case 'E':
+                case 'e':
+                    this.AddGrade(20);
+                    break;
+                default:
+                    throw new Exception("Wrong letter");
 
-                }
             }
+            
         }
         public override void AddGrade(double grade)
         {

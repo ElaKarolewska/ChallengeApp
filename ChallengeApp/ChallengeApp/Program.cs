@@ -4,7 +4,7 @@ Console.WriteLine("Witamy w programie do oceny kierowników.");
 Console.WriteLine("============================================");
 Console.WriteLine();
 
-var employee = new EmployeeInMemory("Ela", "Karolewska");
+var employee = new EmployeeInFile("Ela", "Karolewska");
 employee.GradeAdded += EmployeeGradeAdded;
 
 

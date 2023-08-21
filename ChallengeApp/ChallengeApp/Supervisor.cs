@@ -11,6 +11,8 @@
         public string Name { get; private set; }
         public string Surname { get; private set; }
 
+        public event EmployeeBase.GradeAddedDelegate GradeAdded;
+
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -29,7 +31,7 @@
             {
                 AddGrade(result);
             }
-            else 
+            else
             {
                 throw new Exception("Sring is not float");
             }
@@ -96,7 +98,7 @@
                 default:
                     throw new Exception("Wrong grade.You can use grades ranging from 1 to 6 also with the sign - or + ");
 
-                 
+
             }
         }
 
@@ -141,39 +143,19 @@
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
-            statistics.Average = 0;
-            statistics.Min = float.MaxValue;
-            statistics.Max = float.MinValue;
 
-            foreach (var grade in this.grades)
+            foreach (var grade in this.grades) 
             {
-                statistics.Average += grade;
-                statistics.Min = Math.Min(statistics.Min, grade);
-                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.AddGrade(grade);
             }
 
-            statistics.Average /= this.grades.Count;
 
-            switch (statistics.Average)
-            {
-                case var average when average >= 80:
-                    statistics.AverageLetter = 'A';
-                    break;
-                case var average when average >= 60:
-                    statistics.AverageLetter = 'B';
-                    break;
-                case var average when average >= 40:
-                    statistics.AverageLetter = 'C';
-                    break;
-                case var average when average >= 20:
-                    statistics.AverageLetter = 'D';
-                    break;
-            }
+
 
             return statistics;
         }
     }
 
-}        
-    
+}
+
 

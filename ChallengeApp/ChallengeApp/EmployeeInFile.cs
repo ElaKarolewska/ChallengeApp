@@ -22,12 +22,10 @@
                 {
                     GradeAdded(this, new EventArgs());
                 }
-
-                
             }
             else
             {
-                throw new Exception("Inavalid grade value");
+                throw new Exception("Inavalid grade value. Only grade from 1 to 100 can be add!");
             }
 
         }

@@ -1,24 +1,27 @@
 ﻿using ChallengeApp;
+using System.Reflection.Metadata.Ecma335;
 
-Console.WriteLine("Witamy w programie do oceny kierowników.");
-Console.WriteLine("============================================");
-Console.WriteLine();
+Console.WriteLine("Witamy w programie do oceny pracowników.\n" + "=======================================\n" + "");
+Console.WriteLine("Podaj imię pracownika:");
+var name = Console.ReadLine();
+Console.WriteLine("Podaj nazwisko pracownika:");
+var surname = Console.ReadLine();
 
-var employee = new EmployeeInFile("Ela", "Karolewska");
+var employee = new EmployeeInFile(name, surname); 
+var employee1 = new EmployeeInMemory(name, surname) ;
 employee.GradeAdded += EmployeeGradeAdded;
 
-
-void EmployeeGradeAdded(object sender, EventArgs args) 
+void EmployeeGradeAdded(object sender, EventArgs args)
 {
-    Console.WriteLine("Dodano nową ocenę");
+    Console.WriteLine($"Dodano nową ocenę");
 }
 
 while (true)
 {
-    Console.WriteLine("Podaj kolejną ocenę kierownika lub naciśnij q żeby zakończyć: ");
+    Console.WriteLine($"Podaj kolejną ocenę pracownika {employee. Name} {employee.Surname} \n lub naciśnij q żeby zakończyć: ");
     var input = Console.ReadLine();
 
-    if (input == "q")
+    if (input.ToLower() == "q")
     {
         break;
     }

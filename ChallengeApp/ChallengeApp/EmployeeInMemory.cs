@@ -22,7 +22,7 @@
             }
             else
             {
-                throw new Exception("Inavalid grade value");
+                throw new Exception("Inavalid grade value. Only grade from 1 to 100 can be add!");
             }
         }
         public override void AddGrade(string grade)
@@ -40,16 +40,14 @@
         {
             switch (grade)
             {
-                case 'A':
-                case 'a':
-                    this.grades.Add(100);
+              case 'A' or 'a':
+                   this.grades.Add(100);
+                   break;
+               case 'B' or 'b':
+                   this.grades.Add(80);
                     break;
-                case 'B':
-                case 'b':
-                    this.grades.Add(80);
-                    break;
-                case 'C':
-                case 'c':
+               case 'C':
+               case 'c':
                     this.grades.Add(60);
                     break;
                 case 'D':

@@ -1,5 +1,4 @@
 ﻿using ChallengeApp;
-using System.Reflection.Metadata.Ecma335;
 
 Console.WriteLine("Witamy w programie do oceny pracowników.\n" + "=======================================\n" + "");
 Console.WriteLine("Podaj imię pracownika:");
@@ -10,6 +9,7 @@ var surname = Console.ReadLine();
 var employee = new EmployeeInFile(name, surname); 
 var employee1 = new EmployeeInMemory(name, surname) ;
 employee.GradeAdded += EmployeeGradeAdded;
+//var supervisor = new Supervisor(name, surname);
 
 void EmployeeGradeAdded(object sender, EventArgs args)
 {

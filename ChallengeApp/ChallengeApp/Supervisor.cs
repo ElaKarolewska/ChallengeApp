@@ -27,14 +27,6 @@
         }
         public void AddGrade(string grade)
         {
-            if (float.TryParse(grade, out float result))
-            {
-                AddGrade(result);
-            }
-            else
-            {
-                throw new Exception("Sring is not float");
-            }
             switch (grade)
             {
                 case "6":
@@ -96,9 +88,16 @@
                     this.grades.Add(0);
                     break;
                 default:
-                    throw new Exception("Wrong grade.You can use grades ranging from 1 to 6 also with the sign - or + ");
 
-
+                    if (float.TryParse(grade, out float result))
+                    {
+                        AddGrade(result);
+                    }
+                    else
+                    {
+                        throw new Exception("Wrong grade.You can use grades ranging from 1 to 6 also with the sign - or + ");
+                    }
+                    break;
             }
         }
 
@@ -148,10 +147,7 @@
             {
                 statistics.AddGrade(grade);
             }
-
-
-
-
+          
             return statistics;
         }
     }
